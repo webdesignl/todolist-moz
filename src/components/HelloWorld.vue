@@ -31,6 +31,7 @@
 </template>
 
 <script>
+/** a default exported JS object is where you locally register components, define component inputs (props), handle local state, define methods, and more.  */
 export default {
   name: 'HelloWorld',
   props: {

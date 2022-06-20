@@ -1,5 +1,4 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
@@ -12,6 +11,9 @@ export default {
     HelloWorld
   }
 }
+/**When you register a component in this way, you're registering it locally.
+ *  Locally registered components can only be used inside the components that register them, so you need to import and register them in every component file that uses them.
+ *  This can be useful for bundle splitting/tree shaking since not every page in your app necessarily needs every component. */
 </script>
 
 <style>
@@ -24,3 +26,5 @@ export default {
   margin-top: 60px;
 }
 </style>
+<!--Using Single File Components, Vue lets you group your templates, corresponding script, and CSS all together in a single file ending in .vue.-->
+<!--These files are processed by a JS build tool (such as Webpack), which means you can take advantage of build-time tooling in your project-->
