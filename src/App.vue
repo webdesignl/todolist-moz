@@ -1,15 +1,15 @@
 <template>
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  
+    <h1>To-Do List</h1>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: 'App'
+
 }
 /**When you register a component in this way, you're registering it locally.
  *  Locally registered components can only be used inside the components that register them, so you need to import and register them in every component file that uses them.
