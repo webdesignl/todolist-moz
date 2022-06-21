@@ -1,15 +1,22 @@
 <template>
   
     <h1>To-Do List</h1>
-
+    <ul>
+      <li>
+        <ToDoItem label="My ToDo Item"></ToDoItem>
+      </li>
+    </ul>
+    
 </template>
 
 <script>
-
+import ToDoItem from './components/ToDoItem.vue';
 
 export default {
-  name: 'App'
-
+  name: 'App',
+  components:{
+    ToDoItem
+  }
 }
 /**When you register a component in this way, you're registering it locally.
  *  Locally registered components can only be used inside the components that register them, so you need to import and register them in every component file that uses them.
