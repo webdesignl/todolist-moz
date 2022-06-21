@@ -14,7 +14,7 @@
 *The second way is to define props as an object, with each key corresponding to the prop name. 
 *Listing props as an object allows you to specify default values, mark props as required, perform basic object typing (specifically around JavaScript primitive types)
 perform simple prop validation.*/
-
+                                                                                                                                                                    
 import uniqueId from 'lodash.uniqueid';
 
 export default{
@@ -27,7 +27,8 @@ export default{
      * changing props can cause components to re-render.*/
     props: {
         label: { required:true, type:String},
-        done: { default: false,type: Boolean}
+        done: { default: false,type: Boolean},
+        id: { required: true, type: String}
     },
     // The data property is where you can manage local state in a component
     /**the data property is a function.
@@ -39,7 +40,7 @@ export default{
             //this works in arrow functions (binding to the parent's context), you wouldn't be able to access any of the necessary attributes from inside data if you used an arrow function. 
             //So don't use an arrow function for the data property
             isDone: this.done,
-            id: uniqueId('todo-')
+            
         };
     }
 
