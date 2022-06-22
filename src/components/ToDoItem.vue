@@ -15,7 +15,6 @@
 *Listing props as an object allows you to specify default values, mark props as required, perform basic object typing (specifically around JavaScript primitive types)
 perform simple prop validation.*/
                                                                                                                                                                     
-import uniqueId from 'lodash.uniqueid';
 
 export default{
 
@@ -26,7 +25,7 @@ export default{
      *components editing props can make debugging a challenge*
      * changing props can cause components to re-render.*/
     props: {
-        label: { required:true, type:String},
+        label: { required:true, type: String},
         done: { default: false,type: Boolean},
         id: { required: true, type: String}
     },
