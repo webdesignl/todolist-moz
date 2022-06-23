@@ -1,5 +1,6 @@
 import { createApp } from 'vue'//The object we are passing into createApp is in fact a component.
 import App from './App.vue'//"root component" that can contain other components as its children.
+import './assets/reset.css';
 
 createApp(App).mount('#app')//An application instance won't render anything until its .mount() method is called.
 //The .mount() method should always be called after all app configurations and asset registrations are done. 

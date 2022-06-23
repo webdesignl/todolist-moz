@@ -7,9 +7,11 @@
     .prevent: Prevents the event's default behavior. Equivalent to Event.preventDefault().-->
 
 <form @submit.prevent="onSubmit">
-    <label for="new-todo-input">
+<h2 class="label-wrapper">
+    <label for="new-todo-input" class="label__lg">
         Whats needs to be done?
     </label>
+ </h2>
     <!--to attach the value of the new-todo-input <input> field to the label field. Vue has a special directive for this: v-model
       v-model binds to the data property you set on it and keeps it in sync with the <input>. 
       v-model works across all the various input types, including check boxes, radios, and select inputs. 
@@ -22,11 +24,12 @@
       name="new-todo"
       autocomplete="off"
       v-model.trim.lazy="label"
+       class="input__lg"
     />
     <!--.trim, will remove whitespace from before or after the input.
      Vue is syncing the data after every keystroke. The .lazy modifier causes v-model to use the change event instead.
       This means that Vue will only sync data when the input loses focus or the form is submitted.-->
-    <button type="submit" >
+    <button type="submit" class="btn btn__primary btn__lg" >
       Add
     </button>
 </form>
@@ -36,7 +39,9 @@
 export default{
     /**The methods property holds any methods we might need to call in our component. 
      * When referenced, methods are fully run, so it's not a good idea to use them to display information inside the template.
-     *  For displaying data that comes from calculations, you should use a computed property, */
+     *  For displaying data that comes from calculations, you should use a computed property, 
+     * Vue automatically binds the this value for methods so that it always refers to the component instance. 
+     *  You should avoid using arrow functions when defining methods, as that prevents Vue from binding the appropriate this*/
     methods: {
        onSubmit() {
 
