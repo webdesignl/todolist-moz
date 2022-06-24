@@ -2,9 +2,10 @@
   
     <h1>To-Do List</h1>
     <ToDoFormVue @to-do-added="addToDo"></ToDoFormVue>
+    <h2 id="list-summary">{{listSummary}}</h2>
     <ul aria-labelledby="list-summary" class="stack-large">
       <li v-for="item in ToDoItems" :key="item.id">
-        <ToDoItem :label="item.label" :done="item.done" :id="item.id"></ToDoItem>
+        <ToDoItem :label="item.label" :done="item.done" :id="item.id" @checkbox-changed="updateDoneStatus(item.id)"></ToDoItem>
       </li>
     </ul>
     
@@ -33,9 +34,24 @@ export default {
       ]
     }
   },
+  // a method invocation will always run the function whenever a re-render happens.
   methods:{
     addToDo(toDoLabel) {
       this.ToDoItems.push({id: uniqueId('todo-'),label: toDoLabel,done: false});
+    },
+
+    updateDoneStatus(toDoId) {
+    const toDoToUpdate = this.ToDoItems.find(item => item.id === toDoId)
+    toDoToUpdate.done = !toDoToUpdate.done
+    }
+  },
+  //computed properties are cached based on their reactive dependencies. 
+  //Computed Properties work similarly to methods, but only re-run when one of their dependencies changes.
+  computed: {
+    listSummary(){
+      const numberOfFinishedItems = this.ToDoItems.filter(item => item.done).length;
+      return `${numberOfFinishedItems} out of ${this.ToDoItems.length} items completed`
+
     }
   }
 }
