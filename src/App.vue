@@ -5,7 +5,10 @@
     <h2 id="list-summary">{{listSummary}}</h2>
     <ul aria-labelledby="list-summary" class="stack-large">
       <li v-for="item in ToDoItems" :key="item.id">
-        <ToDoItem :label="item.label" :done="item.done" :id="item.id" @checkbox-changed="updateDoneStatus(item.id)"></ToDoItem>
+        <ToDoItem :label="item.label" :done="item.done" :id="item.id"
+         @checkbox-changed="updateDoneStatus(item.id)" @item-deleted="deleteToDo(item.id)" @item-edited="editToDo(item.id,$event)">
+        </ToDoItem>
+        <!-- $event variable is a special Vue variable used to pass event data to methods-->
       </li>
     </ul>
     
@@ -43,6 +46,14 @@ export default {
     updateDoneStatus(toDoId) {
     const toDoToUpdate = this.ToDoItems.find(item => item.id === toDoId)
     toDoToUpdate.done = !toDoToUpdate.done
+    },
+    deleteToDo(toDoId) {
+      const itemIndex = this.ToDoItems.findIndex(item => item.id === toDoId);
+      this.ToDoItems.splice(itemIndex, 1);
+    },
+    editToDo(toDoId, newLabel) {
+      const toDoToEdit = this.ToDoItems.find(item => item.id === toDoId);
+      toDoToEdit.label = newLabel;
     }
   },
   //computed properties are cached based on their reactive dependencies. 
@@ -52,6 +63,10 @@ export default {
       const numberOfFinishedItems = this.ToDoItems.filter(item => item.done).length;
       return `${numberOfFinishedItems} out of ${this.ToDoItems.length} items completed`
 
+    },
+  // advantage of computed properties is that they preserve reactivity, meaning (among other things) that their state is saved when the template changes
+    isDone() {
+    return this.done;
     }
   }
 }
