@@ -4,6 +4,12 @@
     <ToDoFormVue @to-do-added="addToDo"></ToDoFormVue>
     <h2 id="list-summary">{{listSummary}}</h2>
     <ul aria-labelledby="list-summary" class="stack-large">
+      <!--Vue is updating a list of elements rendered with v-for, by default it uses an "in-place patch" strategy.
+      Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index.
+      This default mode is efficient, but only suitable when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)
+      .To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique key attribute for each item:
+      key here is a special attribute being bound with v-bind. It should not be confused with the property key variable when using v-for with an object.
+      -->
       <li v-for="item in ToDoItems" :key="item.id">
         <ToDoItem :label="item.label" :done="item.done" :id="item.id"
          @checkbox-changed="updateDoneStatus(item.id)" @item-deleted="deleteToDo(item.id)" @item-edited="editToDo(item.id,$event)">
@@ -29,6 +35,7 @@ export default {
   },
   data(){
     return{
+      //key binding expects primitive values - i.e. strings and numbers here we use id as key
       ToDoItems:[
         { id: uniqueId('todo-'), label: 'Learn Vue', done: false },
         { id: uniqueId('todo-'), label: 'Create a Vue project with the CLI', done: true },

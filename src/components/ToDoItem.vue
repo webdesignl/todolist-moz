@@ -1,4 +1,11 @@
 <template>
+<!--. v-ifThe block will only be rendered if the directive's expression returns a truthy value.
+v-if is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+The difference is that an element with v-show will always be rendered and remain in the DOM; v-show only toggles the display CSS property of the element.
+v-if is also lazy: if the condition is false on initial render, it will not do anything
+v-show doesn't support the <template> element, nor does it work with v-else.
+  v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show if you need to toggle something very often, and 
+  prefer v-if if the condition is unlikely to change at runtime.-->
 <div class="stack-small" v-if="!isEditing">
 <div class="custom-checkbox">
     <input type="checkbox" class="checkbox" :id="id" :checked= "isDone" @change="$emit('checkbox-changed')" />
